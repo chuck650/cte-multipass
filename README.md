@@ -42,14 +42,18 @@ Once the VM instance is running, you can retrieve the IPv4 address like this:
 $ multipass info cte | awk '$1=="IPv4:" {print $2}'
 ```
 
-Then add a section for the instance in your `.ssh/config` file that looks like this.  Remember to replace `${USER}` with your user name.
+Then add a section for the instance in your `.ssh/config` file that looks like this.  Remember to replace `${USER}` with your user name and `${IPv$_Address}` with your Multipass VM's IPv4 address.
 
 ```
 Host cte
-    HostName 10.223.79.250
+    HostName ${IPv4_Address}
     User ${USER}
     IdentityFile ~/.ssh/id_ecdsa
     IdentitiesOnly yes
 ```
 
-Now you should be able to ssh into the instance using your own login information
+Now you should be able to ssh into the instance using your own login information.
+
+```bash
+$ ssh cte
+```
