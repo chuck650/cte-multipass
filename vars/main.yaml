@@ -8,3 +8,4 @@ vm_packages:
   - nodejs
   - tmux
   - vim
+  - ansible
