@@ -1,0 +1,12 @@
+#cloud-config
+users:
+  - name: {{ username }}
+    gecos: {{ gecos }}
+    groups: sudo
+    passwd: {{ password }}
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    lock-passwd: false
+    ssh-authorized-keys: [{{ ssh_keys | join(', ') }}]
+packages: [{{ vm_packages | join(', ') }}]
+byobu_by_default: disable
