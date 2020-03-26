@@ -4,6 +4,7 @@ ecdsa_pub_key_path: "~/.ssh/id_ecdsa.pub"
 vm_os_version: eoan
 vm_name: cte
 vm_packages:
+  - zfsutils-linux
   - npm
   - nodejs
   - tmux
