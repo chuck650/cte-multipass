@@ -12,6 +12,12 @@ The python script will read in the template and the variables, verify files, rea
 
 ## Prerequisites
 
+To use this project, you'll need to install git on you system.  For Ubuntu Linux, just install it from the repository.
+
+```bash
+$ sudo apt install git
+```
+
 You'll need at least one ssh key to use with the project.  Preferably, you should have an RSA key and a ECDSA key.  You can create those with the following two commands.
 
 ```bash
