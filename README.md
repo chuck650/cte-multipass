@@ -34,22 +34,34 @@ $ ls -l ~/.ssh/id_{r,ecd}sa{,.pub}
 -rw-r--r-- 1 chuck chuck  408 Aug 30  2018 /home/chuck/.ssh/id_rsa.pub
 ```
 
+You'll also need a working Python3 environment.
+
+```bash
+$ sudo apt install python3 python3-pip python3-jinja2 python3-yaml
+$ sudo pip3 install --ignore-installed PyYAML
+```
+
 ## Installation
-To install the project, just clone the project to a local directory, then change the mode of the script to an executable file and run it.
+To install the project, just clone the project to a local directory, then run it.
 
 For example, from a Linux terminal:
 
 ```bash
 $ git clone https://github.com/chuck650/cte-multipass.git
 $ cd cte-multipass
-$ chmod u+x cte-multipass.py
-multipass$ ./cte-multipass.py
+multipass$ python3 cte-multipass.py
 ```
 
-This will generate the user-data.yaml file for multipass.  Then to launch a new VM using this cloud-init file:
+This will generate the user-data.yaml file for multipass.  You can view this file with a text editor.
 
 ```bash
-$ multipass launch -n cte -c 2 -d 40G -m 16G --cloud-init user-data.yaml Eoan
+$ view user-data.yaml
+```
+
+To launch a new VM using this cloud-init file:
+
+```bash
+$ multipass launch -n cte -c 2 -d 40G -m 16G --cloud-init user-data.yaml eoan
 ```
 
 Once the VM instance is running, you can retrieve the IPv4 address like this:
@@ -72,7 +84,7 @@ Disk usage:     1.9G out of 38.6G
 Memory usage:   211.8M out of 15.6G
 ```
 
-Then add a section for the instance in your `.ssh/config` file that looks like this.  Remember to replace `${USER}` with your user name and `${IPv$_Address}` with your Multipass VM's IPv4 address.
+Then add a section for the instance in your host's `~/.ssh/config` file that looks like this.  Remember to replace `${USER}` with your user name and `${IPv$_Address}` with your Multipass VM's IPv4 address.
 
 ```
 Host cte
@@ -82,7 +94,7 @@ Host cte
     IdentitiesOnly yes
 ```
 
-Now you should be able to ssh into the instance using your own login information.
+Now you should be able to ssh from the host into the instance using your own login information.
 
 ```bash
 $ ssh cte
