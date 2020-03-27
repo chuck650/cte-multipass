@@ -42,6 +42,20 @@ Once the VM instance is running, you can retrieve the IPv4 address like this:
 $ multipass info cte | awk '$1=="IPv4:" {print $2}'
 ```
 
+To view the status of the running instance, use the `multipass info` command.  Here you see the effect of running this on an Ubuntu Linux host with 32 GB of Ram where the Guest VM is allocated 40GB of storage and 16GB of memory.  Notice the utilization of disk and memory is low for a freshly installed VM.
+
+```bash
+$ multipass info cte
+Name:           cte
+State:          Running
+IPv4:           10.223.79.250
+Release:        Ubuntu 19.10
+Image hash:     e0aa0e03fe65 (Ubuntu 19.10)
+Load:           0.62 0.16 0.05
+Disk usage:     1.9G out of 38.6G
+Memory usage:   211.8M out of 15.6G
+```
+
 Then add a section for the instance in your `.ssh/config` file that looks like this.  Remember to replace `${USER}` with your user name and `${IPv$_Address}` with your Multipass VM's IPv4 address.
 
 ```
