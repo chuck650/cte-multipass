@@ -18,11 +18,20 @@ To use this project, you'll need to install git on you system.  For Ubuntu Linux
 $ sudo apt install git
 ```
 
-You'll need at least one ssh key to use with the project.  Preferably, you should have an RSA key and a ECDSA key.  You can create those with the following two commands.
+You'll need at least one ssh key to use with the project.  Preferably, you should have an RSA key and a ECDSA key.  You can create those with the following two commands. Just hit enter when prompted to use the default file names, and no password if you do not want a password on your keys.
 
 ```bash
 ssh-keygen -t rsa -b 2048
 ssh-keygen -t ecdsa -b 521
+```
+Verify the files exist in the right locations.
+
+```bash
+$ ls -l ~/.ssh/id_{r,ecd}sa{,.pub}
+-rw------- 1 chuck chuck  505 Feb 10 06:55 /home/chuck/.ssh/id_ecdsa
+-rw-r--r-- 1 chuck chuck  172 Feb 10 06:55 /home/chuck/.ssh/id_ecdsa.pub
+-rw------- 1 chuck chuck 1679 Aug 30  2018 /home/chuck/.ssh/id_rsa
+-rw-r--r-- 1 chuck chuck  408 Aug 30  2018 /home/chuck/.ssh/id_rsa.pub
 ```
 
 ## Installation
@@ -33,6 +42,7 @@ For example, from a Linux terminal:
 ```bash
 $ git clone https://github.com/chuck650/cte-multipass.git
 $ cd cte-multipass
+$ chmod u+x cte-multipass.py
 multipass$ ./cte-multipass.py
 ```
 
