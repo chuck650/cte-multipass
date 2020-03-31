@@ -9,7 +9,16 @@ users:
     lock-passwd: false
     ssh-authorized-keys: [{{ ssh_pub_keys | join(', ') }}]
 packages: [{{ vm_packages | join(', ') }}]
+{% if ssh_pri_keys|length > 1 -%}
+write_files:
+{% endif -%}
+{% for key in ssh_pri_keys -%}
+-   encoding: b64
+    content: {{ key.content }}
+    owner: {{ username }}:{{ username }}
+    path: /home/{{ username }}/.ssh/{{ key.name }}
+    permissions: '0600'
+{% endfor -%}
 byobu_by_default: disable
 package_update: true
 package_upgrade: true
-final_message: "The CTE virtual machine is ready, after $UPTIME seconds"
